@@ -30,11 +30,20 @@ import org.junit.jupiter.api.Test;
  */
 public class _02_BinaryToDecimal {
     int convertBinaryStringToDecimalInt(String binStr) {
-        return -1;
+    	int decimal = 0;
+for(int i = binStr.length()-1; i>=0; i--) {
+	if(binStr.substring(i,i+1).equals("1")){
+		decimal += Math.pow(2, (binStr.length()-1-i));
+		System.out.println("  " +decimal);
+	}
+}
+System.out.println(decimal);
+return decimal;
     }
 
     @Test
     public void TestBinToDec() {
+    	                 
         String binStr = "010110";
         int expected = 22;
         assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
