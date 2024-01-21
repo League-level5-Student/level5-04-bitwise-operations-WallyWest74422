@@ -22,6 +22,7 @@ import javax.swing.JTextField;
  * Programmers sometimes use a number system called hexadecimal that has 16
  * different possible characters per digit. Each digit can be from 0 to F,
  *     hex character: 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+ *
  *     decimal value: 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
  * 
  * Hex values are prefixed with a 0x in code,
@@ -29,7 +30,7 @@ import javax.swing.JTextField;
  * 
  * Since each hex digit can be 16 different characters, 1 byte can be expressed
  * as 2 hex characters. All 3 int variables below are the same value.
- *      int hex = 0x1F;
+ *      int hex = 0x1F; 11111
  *      int bin = 0b11111;
  *      int dec = 31;
  * 
@@ -52,10 +53,35 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * You don't have to handle negative numbers unless you want the challenge!
      */
     String binaryToHex(String binaryStr) {
-        return "-";
+        int decimal = 0;
+        boolean negative = false;
+for(int i = binaryStr.length()-1; i>=0; i--) {
+	if(binaryStr.substring(i,i+1).equals("1")){
+		decimal += Math.pow(2, (binaryStr.length()-1-i));
+
+	}
+}
+if(negative) {
+	
+}
+System.out.println(decimal);
+        String hex = "";
+    String hexDigits = "0123456789ABCDEF";
+    while(decimal/16!=0){
+    hex = "" + hexDigits.substring(decimal%16, decimal%16 +1) + hex;
+    decimal/=16;
     }
     
-    String binaryToDec(String binaryStr) {
+hex = hexDigits.substring(decimal%16, decimal%16+1) + hex;
+return hex;
+    }
+    
+    String binaryToDec(String binaryStr) { 				//01000011 = 67
+    	for(int i = binaryStr.length(); i>=0; i++) {
+    		if(binaryStr.substring(i,i-1).equals("1")) {
+    			
+    		}
+    	}
         return "-";
     }
 
