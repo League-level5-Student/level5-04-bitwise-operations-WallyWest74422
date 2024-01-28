@@ -58,13 +58,11 @@ public class _02_HexadecimalPrinter implements ActionListener {
 for(int i = binaryStr.length()-1; i>=0; i--) {
 	if(binaryStr.substring(i,i+1).equals("1")){
 		decimal += Math.pow(2, (binaryStr.length()-1-i));
-
 	}
 }
 if(negative) {
 	
 }
-System.out.println(decimal);
         String hex = "";
     String hexDigits = "0123456789ABCDEF";
     while(decimal/16!=0){
@@ -77,23 +75,34 @@ return hex;
     }
     
     String binaryToDec(String binaryStr) { 				//01000011 = 67
-    	for(int i = binaryStr.length(); i>=0; i++) {
-    		if(binaryStr.substring(i,i-1).equals("1")) {
-    			
-    		}
-    	}
-        return "-";
+int decimal = 0;
+for(int i = binaryStr.length()-1; i>=0; i--) {
+	if(binaryStr.substring(i,i+1).equals("1")){
+		decimal += Math.pow(2, (binaryStr.length()-1-i));
+
+	}
+}
+        return decimal+ "";
     }
 
     /*
      * ASCII values are exactly 8 bits so return '-' if there isn't.
      */
     String binaryToAscii(String binaryStr) {
-        if (binaryStr.length() != 8) {
-            return "-";
-        }
+    	if(binaryStr.length()!=8) {
+    		return "-";
+    	}
+    	int decimal = 0;
+    	for(int i = binaryStr.length()-1; i>=0; i--) {
+    		if(binaryStr.substring(i,i+1).equals("1")){
+    			decimal += Math.pow(2, (binaryStr.length()-1-i));
 
-        return "-";
+    		}
+    	}
+    	char ascii = (char)(decimal);
+    	String ASCII = ascii +"";
+
+        return ASCII;
     }
     
     public static void main(String[] args) {
