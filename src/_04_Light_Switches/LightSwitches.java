@@ -55,21 +55,8 @@ public class LightSwitches implements GameControlScene {
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
     boolean isLightOn(int index) {
-        String s = "";
-        for(int i = 7; i>=0; i--) {
-        	if(i==index) {
-        		s+="1";
-        	}else {
-        		s+="0";
-        	}
-        }
-        int mask = Integer.parseInt(s);
-int check = lightsOnOff|mask;
-        if(lightsOnOff==check) {
-        	return true;
-        }else {
-        	return false;
-        }
+
+    	return (lightsOnOff & (1<< index))!=0;
     }
     
     /*
@@ -77,16 +64,8 @@ int check = lightsOnOff|mask;
      * index = 4        // turn off yellow only (set bit 4 = 1)
      */
     void turnLightOn(int index) {
-        String s = "";
-        for(int i = 7; i>=0; i--) {
-        	if(i==index) {
-        		s+="1";
-        	}else {
-        		s+="0";
-        	}
-        }
-        int mask = Integer.parseInt(s);
-        lightsOnOff = lightsOnOff|mask;
+
+    	lightsOnOff = lightsOnOff | (1<<index);
     }
     
     /*
@@ -94,16 +73,8 @@ int check = lightsOnOff|mask;
      * index = 0        // turn off blue only (set bit 0 = 0)
      */
     void turnLightOff(int index) {
-        String s = "";
-        for(int i = 7; i>=0; i--) {
-        	if(i==index) {
-        		s+="0";
-        	}else {
-        		s+="1";
-        	}
-        }
-        int mask = Integer.parseInt(s);
-        lightsOnOff = lightsOnOff&mask;
+
+    	lightsOnOff = lightsOnOff & ~(1<<index);
     }
     
     /*
@@ -111,7 +82,7 @@ int check = lightsOnOff|mask;
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
-        lightsOnOff = lightsOnOff|lightsBitmap;
+        lightsOnOff = (lightsOnOff|lightsBitmap);
     }
     
     /*
@@ -120,7 +91,7 @@ int check = lightsOnOff|mask;
      */
     void turnMultiLightsOff(int lightsBitmap) {
         int mask = ~lightsBitmap;
-        lightsOnOff = lightsOnOff&mask;
+        lightsOnOff = (lightsOnOff&mask);
     }
     
     /*
@@ -133,7 +104,7 @@ int check = lightsOnOff|mask;
      *                               orange(3) and yellow(4) on
      */
     void toggleLights(int lightsBitmap) {
-        lightsOnOff = lightsOnOff^lightsBitmap;
+        lightsOnOff = (lightsOnOff^lightsBitmap);
     }
     
     void runLightSequence1() {

@@ -60,23 +60,18 @@ public class _03_DecimalToBinary {
 
     public static String convertDecimalToBinary(int decimalNum) {
         String binaryStr = "";
-
         do {
             // 1. Logical right shift by 1
             int quotient = decimalNum >>> 1;
-
             // 2. Check remainder and add '1' or '0'
             if( decimalNum % 2 != 0 ){
                 binaryStr = '1' + binaryStr;
             } else {
                 binaryStr = '0' + binaryStr;
             }
-
             decimalNum = quotient;
-
             // 3. Repeat until number is 0
         } while( decimalNum != 0 );
-
         return binaryStr;
     }
 }
