@@ -71,34 +71,65 @@ return (byte)(i);
     	String fullBinary = "";
     	for(int i = 0; i<s.length(); i++) {
     		int index = convertBase64Char(s.charAt(i));
-            String binaryStr = "";
-            do {
-                int quotient = index >>> 1;
-                if( index % 2 != 0 ){
-                    binaryStr = '1' + binaryStr;
-                } else {
-                    binaryStr = '0' + binaryStr;
-                }
-                index = quotient;
-            } while( index != 0 );
-while(binaryStr.length()<6) {
-	binaryStr = 0+binaryStr;
+            String binary = "";
+            while(index/2!=0){
+                binary = index%2 + binary;
+                index/=2;
+            }
+                binary = index%2 + binary;
+
+while(binary.length()<6) {
+	binary = 0+binary;
 }
-   fullBinary+=binaryStr;
+   fullBinary+=binary;
     	}  
-    	 byte[] bytes = new byte[3];  
-bytes[0] = (byte)Integer.parseInt(fullBinary.substring(0,8));
-bytes[1] = (byte)Integer.parseInt(fullBinary.substring(8,16));
-bytes[2] = (byte)Integer.parseInt(fullBinary.substring(16,24));
-System.out.println(bytes[0]);
-System.out.println(bytes[1]);
-System.out.println(bytes[2]);
+
+    	 String uno = fullBinary.substring(0,8);
+    	 String dos = fullBinary.substring(8,16);
+    	 String tres =fullBinary.substring(16);
+    	 int one = 0;
+    	 int two = 0;
+    	 int three = 0;
+    	 for(int i = uno.length()-1; i>=0; i--) {
+    			if(uno.substring(i,i+1).equals("1")){
+    				one += Math.pow(2, (uno.length()-1-i));
+
+    			}
+    		}
+    	 for(int i = dos.length()-1; i>=0; i--) {
+ 			if(dos.substring(i,i+1).equals("1")){
+ 				two += Math.pow(2, (dos.length()-1-i));
+
+ 			}
+ 		}
+    	 for(int i = tres.length()-1; i>=0; i--) {
+ 			if(tres.substring(i,i+1).equals("1")){
+ 				three += Math.pow(2, (tres.length()-1-i));
+
+ 			}
+ 		}
+    	 byte[] bytes = {(byte) one, (byte) two, (byte) three};
         return bytes;
     }
 
     //3. Complete this method so that it takes in a string of any length
     //   and returns the full byte array of the decoded base64 characters.
-    public static byte[] base64StringToByteArray(String file) {
-        return null;
+    public static byte[] base64StringToByteArray(String file) {     //16 chars->12 bytes
+//int times = (file.length()/4)*3;
+//byte[] decoded = new byte[times];
+//int counter = 0;
+//for(int i = 0; i<times/3; i++) {
+//	byte[] temp = convert4CharsTo24Bits(file.substring(4*i, (4*i)+1));
+//	decoded[counter] = temp[0];
+////	System.out.println(decoded[counter]);
+//	counter++;
+//	decoded[counter] = temp[1];
+////	System.out.println(decoded[counter]);
+//	counter++;
+//	decoded[counter] = temp[2];
+////	System.out.println(decoded[counter]);
+//	counter++;
+//}
+        return decoded;
     }
 }
